@@ -3,6 +3,7 @@ const express=require('express')
 const mongoose=require('mongoose')
 
 const categoryRoutes=require('./routes/categories');
+const itemRoutes=require('./routes/item')
 
 const app=express()
 const port=process.env.PORT || 3000;
@@ -12,6 +13,7 @@ app.get('/',(req,res)=>{
     res.send('Hello from the inventory API! We are connected to the database!!')
 })
 app.use('/categories',categoryRoutes);
+app.use('/item',itemRoutes)
 
 const startServer=async ()=>{
     try{
