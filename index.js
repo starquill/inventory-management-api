@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express=require('express')
 const mongoose=require('mongoose')
+const cors=require('cors';)
 
 const categoryRoutes=require('./routes/categories');
 const itemRoutes=require('./routes/item')
@@ -14,6 +15,7 @@ app.get('/',(req,res)=>{
 })
 app.use('/categories',categoryRoutes);
 app.use('/item',itemRoutes)
+app.use(cors());
 
 const startServer=async ()=>{
     try{
