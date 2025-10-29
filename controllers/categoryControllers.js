@@ -1,5 +1,45 @@
 const Category=require('../models/Category')
 
+ const findCategoryById=async(req,res)=>{
+    try{
+    const {id}=req.params;
+    const category=await Category.findById(id);
+    if(!category)
+        res.status(404).json({message:"Category not found"});
+    res.status(200).json(category);
+    } catch(error){
+        res.send(500).json({message:"Server Error",error:error.message});
+    }
+ };
+ const updateCategory=async(req,res)=>{
+    try{
+    const {id}=req.params;
+    const {name}=req.body;
+    const updatedCategory=await Category.findByIdAndUpdate(
+        id,
+        {name:name},
+        {new:true}
+    );
+    if(!updatedCategory)
+        res.status(404).json({message:"Category not found"});
+    res.status(200).json(updateCategory);
+    } catch(error){
+        res.send(500).json({message:"Server Error",error:error.message});
+    }
+ };
+
+ const deleteCategoryById=async(req,res)=>{
+    try{
+    const {id}=req.params;
+    const category=await Category.findByIdAndDelete(id);
+    if(!category)
+        res.status(404).json({message:"Category not found"});
+    res.status(200).json({message:"Category deleted successfully"});
+    } catch(error){
+        res.send(500).json({message:"Server Error",error:error.message});
+    }
+ };
+
 const createCategory=async (req,res)=>{
     try{
         const { name }=req.body;
@@ -27,5 +67,8 @@ const findAllCategories=async(req,res)=>{
 }
 module.exports = {
     createCategory,
-    findAllCategories
+    findAllCategories,
+    findCategoryById,
+    deleteCategoryById,
+    updateCategory
   };
