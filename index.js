@@ -1,6 +1,9 @@
 require('dotenv').config()
 const express=require('express')
 const mongoose=require('mongoose')
+
+const categoryRoutes=require('./routes/categories');
+
 const app=express()
 const port=process.env.PORT || 3000;
 
@@ -8,6 +11,7 @@ app.use(express.json())
 app.get('/',(req,res)=>{
     res.send('Hello from the inventory API! We are connected to the database!!')
 })
+app.use('/categories',categoryRoutes);
 
 const startServer=async ()=>{
     try{
@@ -21,4 +25,4 @@ const startServer=async ()=>{
         process.exit(1);
     }
 }
-startServer()
+startServer();
