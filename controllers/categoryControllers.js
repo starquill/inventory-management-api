@@ -1,4 +1,5 @@
 const Category=require('../models/Category')
+const Item = require('../models/Item');
 
  const findCategoryById=async(req,res)=>{
     try{
@@ -31,6 +32,7 @@ const Category=require('../models/Category')
  const deleteCategoryById=async(req,res)=>{
     try{
     const {id}=req.params;
+    await Item.deleteMany({ category: id });
     const category=await Category.findByIdAndDelete(id);
     if(!category)
         res.status(404).json({message:"Category not found"});

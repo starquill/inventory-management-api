@@ -1,21 +1,23 @@
 require('dotenv').config()
 const express=require('express')
 const mongoose=require('mongoose')
-const cors=require('cors';)
+const cors=require('cors')
 
 const categoryRoutes=require('./routes/categories');
-const itemRoutes=require('./routes/item')
+const itemRoutes=require('./routes/item');
+const authRoutes=requires('./routes/authRoutes.js');
 
 const app=express()
 const port=process.env.PORT || 3000;
 
+app.use(cors());
 app.use(express.json())
 app.get('/',(req,res)=>{
     res.send('Hello from the inventory API! We are connected to the database!!')
 })
 app.use('/categories',categoryRoutes);
 app.use('/item',itemRoutes)
-app.use(cors());
+app.use('/auth',authRoutes)
 
 const startServer=async ()=>{
     try{
