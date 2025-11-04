@@ -14,6 +14,6 @@ router.get('/',findAllCategories);
 router.get('/:id',findCategoryById);
 router.post('/', protect, createCategory);
 router.put('/:id', protect, updateCategory);
-router.delete('/:id', protect, deleteCategory);
+router.delete('/:id', protect, deleteCategoryById);
 
 module.exports=router;

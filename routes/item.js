@@ -9,10 +9,12 @@ const {
     deleteItem
  } = require('../controllers/itemControllers')
 
-router.post('/',createItem);
+ const { protect } = require('../middleware/authMiddleware');
+
 router.get('/',getAllItems);
-router.put('/:id',updateItem);
-router.delete('/:id',deleteItem);
+router.post('/', protect, createItem);
+router.put('/:id', protect, updateItem);
+router.delete('/:id', protect, deleteItem);
 router.get('/:id',getItemById);
 
 module.exports=router;
