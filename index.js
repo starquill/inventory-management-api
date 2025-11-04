@@ -5,7 +5,7 @@ const cors=require('cors')
 
 const categoryRoutes=require('./routes/categories');
 const itemRoutes=require('./routes/item');
-const authRoutes=requires('./routes/authRoutes.js');
+const authRoutes=require('./routes/authRoutes.js');
 
 const app=express()
 const port=process.env.PORT || 3000;
